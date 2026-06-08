@@ -65,15 +65,15 @@ export function ProtestList() {
   };
 
   return (
-    <div className="w-full flex-1 flex flex-col overflow-hidden h-full">
-      <div className="flex justify-between items-end mb-4 shrink-0 px-2 lg:px-0 lg:-ml-2">
-        <div className="space-y-1">
-          <h2 className="text-3xl lg:text-4xl font-black uppercase italic tracking-tight">Yang Lagi Banyak Dirasain</h2>
-          <p className="font-bold text-sm">Semakin banyak yang relate, semakin naik.</p>
+    <div className="w-full flex-1 flex flex-col overflow-hidden h-full min-w-0">
+      <div className="flex justify-between items-end mb-4 shrink-0 px-2 sm:px-0">
+        <div className="space-y-1 max-w-full">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase italic tracking-tight break-word">Yang Lagi Banyak Dirasain</h2>
+          <p className="font-bold text-sm break-word">Semakin banyak yang relate, semakin naik.</p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-y-auto pb-48 h-full px-2 lg:px-4 pt-2 -mx-2 lg:-mx-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 overflow-y-auto pb-48 h-full px-2 lg:px-4 pt-2">
         {protests.map((protest, index) => {
           const isLiked = likedIds.has(protest.id);
           const colorClass = COLORS[index % COLORS.length];
@@ -86,27 +86,27 @@ export function ProtestList() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: index * 0.05 }}
               className={cn(
-                "neubrutal-card p-5 flex flex-col justify-between",
+                "neubrutal-card p-5 flex flex-col justify-between min-w-0",
                 colorClass,
                 rotateClass
               )}
             >
-              <div className="flex justify-between items-start">
-                <span className="text-4xl font-black opacity-30">#{index + 1}</span>
+              <div className="flex justify-between items-start gap-4 flex-wrap">
+                <span className="text-4xl sm:text-5xl font-black opacity-30 break-word">#{index + 1}</span>
                 <button
                   onClick={() => handleLike(protest.id)}
                   disabled={isLiked}
-                  className="text-xl font-bold bg-white/50 px-2 py-1 border-[2px] border-black rounded hover:scale-105 active:scale-95 transition-transform"
+                  className="text-xl font-bold bg-white/50 px-2 py-1 border-[2px] border-black rounded hover:scale-105 active:scale-95 transition-transform break-word whitespace-nowrap"
                 >
                   {isLiked ? '❤️🔥' : '❤️'} {protest.likes}
                 </button>
               </div>
 
-              <p className="text-xl font-bold py-4 leading-snug">
+              <p className="text-xl sm:text-2xl font-bold py-4 leading-snug break-word">
                 "{protest.text}"
               </p>
 
-              <div className="font-black uppercase text-xs tracking-wider opacity-80">
+              <div className="font-black uppercase text-xs tracking-wider opacity-80 break-word">
                 — {protest.nickname}
               </div>
             </motion.div>

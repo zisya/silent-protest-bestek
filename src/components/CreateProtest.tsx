@@ -55,24 +55,24 @@ export function CreateProtest() {
   };
 
   return (
-    <div className="w-full max-w-lg">
+    <div className="w-full max-w-full">
       {showSuccess ? (
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="neubrutal-card bg-brand-green p-6 text-xl font-bold uppercase mb-8"
+          className="neubrutal-card bg-brand-green p-6 text-xl font-bold uppercase mb-8 break-word"
         >
           Siap. Keresahanmu sekarang jadi konsumsi publik.
         </motion.div>
       ) : (
-        <form onSubmit={handleSubmit} className="neubrutal-card bg-white p-6 flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="neubrutal-card bg-white p-6 flex flex-col gap-4 max-w-full">
           
-          <div className="flex justify-between items-center">
-            <label className="font-black uppercase text-sm">Tulis keresahan selama di BESTEK</label>
-            <span className="text-xs font-bold text-gray-500">{text.length}/500</span>
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+            <label className="font-black uppercase text-sm break-word">Tulis keresahan selama di BESTEK</label>
+            <span className="text-xs font-bold text-gray-500 break-word">{text.length}/500</span>
           </div>
 
-          <div className="relative h-48 border-4 border-black p-4 bg-gray-50">
+          <div className="relative h-48 border-4 border-black p-4 bg-gray-50 min-w-0">
             <AnimatePresence mode="wait">
               {!text && (
                 <motion.div
@@ -81,7 +81,7 @@ export function CreateProtest() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                   transition={{ duration: 0.3 }}
-                  className="absolute top-4 left-4 text-gray-400 font-bold italic pointer-events-none"
+                  className="absolute top-4 left-4 right-4 text-gray-400 font-bold italic pointer-events-none break-word"
                 >
                   "{PLACEHOLDERS[placeholderIndex]}"
                 </motion.div>
@@ -91,29 +91,29 @@ export function CreateProtest() {
               value={text}
               onChange={(e) => setText(e.target.value)}
               maxLength={500}
-              className="w-full h-full bg-transparent outline-none font-bold resize-none relative z-10"
+              className="w-full h-full bg-transparent outline-none font-bold resize-none relative z-10 break-word min-w-0"
               placeholder=""
               required
             />
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1 border-4 border-black p-2 flex items-center gap-2 bg-white">
-              <span className="text-xs font-black uppercase text-gray-500">Alias:</span>
+          <div className="flex flex-col sm:flex-row gap-4 w-full">
+            <div className="flex-1 border-4 border-black p-2 flex items-center gap-2 bg-white min-w-0">
+              <span className="text-xs font-black uppercase text-gray-500 break-word">Alias:</span>
               <input
                 type="text"
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
                 maxLength={50}
                 placeholder="Anonim"
-                className="bg-transparent outline-none font-bold w-full text-sm placeholder:text-gray-300"
+                className="bg-transparent outline-none font-bold w-full text-sm placeholder:text-gray-300 break-word min-w-0"
               />
             </div>
             
             <button
               type="submit"
               disabled={isSubmitting || !text.trim()}
-              className="neubrutal-btn bg-brand-pink text-black px-8 py-2 disabled:opacity-50"
+              className="neubrutal-btn bg-brand-pink text-black px-8 py-2 disabled:opacity-50 w-full sm:w-auto text-center break-word"
             >
               {isSubmitting ? '...' : 'Curhatin'}
             </button>
