@@ -1,0 +1,36 @@
+{
+  "entities": {
+    "Protest": {
+      "title": "Protest",
+      "description": "A silent protest confession",
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The protest text"
+        },
+        "nickname": {
+          "type": "string",
+          "description": "The author's nickname"
+        },
+        "likes": {
+          "type": "number",
+          "description": "Number of likes"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Server timestamp of creation"
+        }
+      },
+      "required": ["text", "nickname", "likes", "createdAt"]
+    }
+  },
+  "firestore": {
+    "protests/{protestId}": {
+      "schema": {
+        "$ref": "#/entities/Protest"
+      },
+      "description": "Collection of all protests"
+    }
+  }
+}

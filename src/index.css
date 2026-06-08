@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-yellow: #FFDE00;
+  --color-brand-pink: #FF00FF;
+  --color-brand-cyan: #00FFFF;
+  --color-brand-green: #00FF00;
+  --color-brand-orange: #FF6B00;
+}
+
+@layer utilities {
+  .neubrutal-card {
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0px 0px #000;
+    transition: all 0.2s ease;
+  }
+  .neubrutal-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 12px 12px 0px 0px #000;
+  }
+  .neubrutal-btn {
+    border: 4px solid #000;
+    box-shadow: 4px 4px 0px 0px #000;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.1s ease;
+  }
+  .neubrutal-btn:active:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px #000;
+  }
+  .placeholder-anim {
+    animation: fadeSlide 3s infinite;
+  }
+}
+
+@keyframes fadeSlide {
+  0%, 100% { opacity: 0; transform: translateY(5px); }
+  20%, 80% { opacity: 1; transform: translateY(0); }
+}
+

@@ -1,0 +1,6 @@
+{
+  "name": "Silent Protest BESTEK",
+  "description": "An anonymously collect funny, honest, relatable, and sometimes brutal feedback from BESTEK members.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
