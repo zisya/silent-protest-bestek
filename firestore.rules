@@ -2,36 +2,10 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
-      allow read, write: if false;
-    }
-
-    function isValidId(id) {
-      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
-    }
-
-    function incoming() {
-      return request.resource.data;
-    }
-
-    function existing() {
-      return resource.data;
-    }
-
-    function isValidProtestCreate(data) {
-      return data.keys().hasAll(['text', 'nickname', 'likes', 'createdAt']) &&
-             data.keys().size() == 4 &&
-             data.text is string && data.text.size() > 0 && data.text.size() <= 500 &&
-             data.nickname is string && data.nickname.size() <= 50 &&
-             data.likes is number && data.likes == 0 &&
-             data.createdAt == request.time;
-    }
-
-    match /protests/{protestId} {
-      allow get, list: if true;
-      allow create: if isValidId(protestId) && isValidProtestCreate(incoming());
-      allow update: if isValidId(protestId) &&
-                       incoming().diff(existing()).affectedKeys().hasOnly(['likes']) &&
-                       incoming().likes is number;
+      allow read: if true;
+      allow create: if true;
+      allow update: if true;
+      allow delete: if true;
     }
   }
 }

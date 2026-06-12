@@ -37,9 +37,9 @@ export function ProtestList({ adminMode }: { adminMode: boolean }) {
     const unsubscribe = onSnapshot(
       q,
       (snapshot) => {
-        const data = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data()
+        const data = snapshot.docs.map((snapshotDoc) => ({
+          ...snapshotDoc.data(),
+          id: snapshotDoc.id
         })) as Protest[];
         setProtests(data);
       },
@@ -87,12 +87,14 @@ export function ProtestList({ adminMode }: { adminMode: boolean }) {
     });
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (protest: Protest) => {
     if (!confirm('Yakin mau hapus keresahan ini?')) return;
+
     try {
-      await deleteDoc(doc(db, 'protests', id));
-    } catch (err) {
-      console.error('Failed to delete protest:', err);
+      await deleteDoc(doc(db, 'protests', protest.id));
+    } catch (error) {
+      console.error('Failed to delete protest:', error);
+      alert('Gagal hapus. Cek Firestore rules atau console.');
     }
   };
 
@@ -165,7 +167,7 @@ export function ProtestList({ adminMode }: { adminMode: boolean }) {
                   {adminMode && (
                     <button
                       type="button"
-                      onClick={() => handleDelete(protest.id)}
+                      onClick={() => handleDelete(protest)}
                       className="text-sm font-black uppercase bg-white px-3 py-1 border-[2px] border-black rounded hover:bg-black hover:text-white transition-colors"
                     >
                       Hapus
