@@ -1,7 +1,7 @@
 export interface Protest {
   id: string;
   text: string;
-  nickname: string;
+  solution?: string;
   likes: number;
-  createdAt: number;
+  createdAt?: number | { seconds: number; nanoseconds: number } | null;
 }

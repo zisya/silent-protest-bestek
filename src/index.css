@@ -14,7 +14,7 @@
   html, body, #root {
     min-height: 100vh;
     margin: 0;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   *, *::before, *::after {
@@ -67,4 +67,3 @@
   0%, 100% { opacity: 0; transform: translateY(5px); }
   20%, 80% { opacity: 1; transform: translateY(0); }
 }
-
